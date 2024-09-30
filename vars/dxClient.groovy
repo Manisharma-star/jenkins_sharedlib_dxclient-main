@@ -43,11 +43,32 @@ def call() {
 
                 printConfig(config)
                 
-                withCredentials([usernamePassword(credentialsId: 'dxclient-cred', usernameVariable: 'DXCLIENT_USER', passwordVariable: 'DXCLIENT_PASS')]) {
-                    sh 'echo DXCLIENT_USER: $DXCLIENT_USER'
-                    sh 'echo DXCLIENT_PASS: $DXCLIENT_PASS'
-                    
-                    // Use the credentials as needed
+               
+
+            withCredentials([
+					[$class: 'UsernamePasswordMultiBinding', credentialsId: dxcredentials_test1 , usernameVariable: 'DX_USERNAME', passwordVariable: 'DX_PASSWORD'],
+					[$class: 'UsernamePasswordMultiBinding', credentialsId: dxcredentials_test1 , usernameVariable: 'DXCONNECT_USERNAME', passwordVariable: 'DXCONNECT_PASSWORD']
+			]) 
+
+              script {  
+                  Exception caughtException = null;
+              catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+                try {
+                  command = "deploy-application -hostname ${config.hostname} -dxProtocol ${config.dxProtocol} -dxPort ${config.dxPort} -dxUsername ${DX_USERNAME} -dxPassword ${DX_PASSWORD} -dxConnectPort ${DXCONNECT_PORT} -dxConnectUsername ${DXCONNECT_USERNAME} -dxConnectPassword ${DXCONNECT_PASSWORD} -applicationFile Deployables\\EAR\\fspappinterfaceEAR.ear -applicationName fspappinterfaceEAR -dxProfileName ${dxProfileName}"
+
+              // TODO : check for generic artifact path   
+                  sh "./bin/dxclient ${command}"
+
+                } catch (Throwable e) {
+                  caughtException = e;
+                }
+                if (caughtException) {
+                  error caughtException.message
+                }
+              }  
+                  
+              }
+                  // Use the credentials as needed
                     // For example, you can add them to the config map
                     config['dxClientUser'] = env.DXCLIENT_USER
                     config['dxClientPass'] = env.DXCLIENT_PASS
