@@ -72,7 +72,7 @@ def call() {
                     // For example, you can add them to the config map
                     config['dxClientUser'] = env.DXCLIENT_USER
                     config['dxClientPass'] = env.DXCLIENT_PASS
-                }
+                
                 
                 return config
             }
