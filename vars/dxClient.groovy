@@ -14,6 +14,7 @@ def printConfig(Map config = [:]) {
 }
 
 def call() {
+    echo "dxclient is called::::::::"
     configFileProvider([configFile(fileId: 'dx-targets.yaml', variable: 'DXCLIENT_SETTINGS')]) {
         Map config = [:]
         def fileConfig = readYaml(file: "$DXCLIENT_SETTINGS")
