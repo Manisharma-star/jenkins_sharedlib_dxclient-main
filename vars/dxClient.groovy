@@ -56,6 +56,7 @@ def call() {
                   command = "deploy-application -hostname ${config.hostname} -dxProtocol ${config.dxProtocol} -dxPort ${config.dxPort} -dxUsername wpsadmin -dxPassword Avn3tNPR -dxConnectPort ${config.dxPort} -dxConnectUsername wpsadmin -dxConnectPassword Avn3tNPR -applicationFile C:/ProgramData/Jenkins/.jenkins/workspace/Test/target/globalUserProfile.ear-0.0.1-SNAPSHOT.ear -applicationName globalUserProfile -dxProfileName ${config.dxProfileName}"
 
               // TODO : check for generic artifact path   
+                  bat "set NODE_TLS_REJECT_UNAUTHORIZED=0"
                   bat "node C:/Users/C23597/Software/hcl-dxclient-v95_CF220_20240522-1932/dxclient/bin/dxclient ${command}"
 
                 } catch (Throwable e) {
