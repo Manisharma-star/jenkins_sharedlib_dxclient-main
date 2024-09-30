@@ -53,7 +53,7 @@ def call() {
                   Exception caughtException = null;
               catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
                 try {
-                  command = "deploy-application -hostname ${config.hostname} -dxProtocol ${config.dxProtocol} -dxPort ${config.dxPort} -dxUsername wpsadmin -dxPassword Avn3tNPR -dxConnectPort ${config.dxPort} -dxConnectUsername wpsadmin -dxConnectPassword Avn3tNPR -applicationFile C:\ProgramData\Jenkins\.jenkins\workspace\Test\target\dxUserProfile-0.0.1-SNAPSHOT.war -applicationName dxUserProfile-0.0.1-SNAPSHOT.war -dxProfileName ${config.dxProfileName}"
+                  command = "deploy-application -hostname ${config.hostname} -dxProtocol ${config.dxProtocol} -dxPort ${config.dxPort} -dxUsername wpsadmin -dxPassword Avn3tNPR -dxConnectPort ${config.dxPort} -dxConnectUsername wpsadmin -dxConnectPassword Avn3tNPR -applicationFile C:/ProgramData/Jenkins/.jenkins/workspace/Test/target/dxUserProfile-0.0.1-SNAPSHOT.war -applicationName dxUserProfile-0.0.1-SNAPSHOT.war -dxProfileName ${config.dxProfileName}"
 
               // TODO : check for generic artifact path   
                   bat "./bin/dxclient ${command}"
