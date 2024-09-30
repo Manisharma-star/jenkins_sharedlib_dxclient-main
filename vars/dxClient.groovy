@@ -11,6 +11,8 @@ def printConfig(Map config = [:]) {
     echo "   dxConnectPort: ${config.dxConnectPort}"
     echo "   dxContextRoot: ${config.dxContextRoot}"
     echo "   contenthandlerPath: ${config.contenthandlerPath}"
+     echo "   dxProfileName: ${config.dxProfileName}"
+    
 }
 
 def call() {
@@ -40,7 +42,7 @@ def call() {
                 config['dxConnectPort'] = envConfig.dxConnectPort
                 config['dxContextRoot'] = envConfig.dxContextRoot
                 config['contenthandlerPath'] = envConfig.contenthandlerPath
-
+                config['dxProfileName'] = envConfig.DX_PROFILENAME
                 printConfig(config)
                 
                
