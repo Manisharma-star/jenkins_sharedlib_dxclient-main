@@ -23,7 +23,8 @@ def call() {
          echo "fileConfig : ${fileConfig}"
         fileConfig.environments.each { envName, envConfig ->
             // Print the branch value
-
+       echo "envConfig.branch : ${envConfig.branch}"
+            echo " env.GIT_BRANCH : ${ env.GIT_BRANCH}"
             echo "Environment: ${envName}, Branch: ${envConfig.branch} GIT_BRANCH: ${env.GIT_BRANCH}"
 
             if ('origin/' + envConfig.branch == env.GIT_BRANCH) {
