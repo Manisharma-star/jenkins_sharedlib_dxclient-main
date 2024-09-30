@@ -27,7 +27,7 @@ def call() {
             echo " env.GIT_BRANCH : ${ env.GIT_BRANCH}"
             echo "Environment: ${envName}, Branch: ${envConfig.branch} GIT_BRANCH: ${env.GIT_BRANCH}"
 
-            if ('origin/' + envConfig.branch == env.GIT_BRANCH) {
+            if ('origin/' + envConfig.branch == "main") {
                 echo "EnvConfig: ${envConfig}"
                 echo "Loading configuration for ${envName}"
                 config['dxWPSCredentials'] = envConfig.dxWPSCredentials
