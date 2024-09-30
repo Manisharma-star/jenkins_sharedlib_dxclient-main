@@ -45,16 +45,13 @@ def call() {
                 
                
 
-            withCredentials([
-					[$class: 'UsernamePasswordMultiBinding', credentialsId: dxcredentials_test1 , usernameVariable: 'DX_USERNAME', passwordVariable: 'DX_PASSWORD'],
-					[$class: 'UsernamePasswordMultiBinding', credentialsId: dxcredentials_test1 , usernameVariable: 'DXCONNECT_USERNAME', passwordVariable: 'DXCONNECT_PASSWORD']
-			]) 
+          
 
               script {  
                   Exception caughtException = null;
               catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
                 try {
-                  command = "deploy-application -hostname ${config.hostname} -dxProtocol ${config.dxProtocol} -dxPort ${config.dxPort} -dxUsername ${DX_USERNAME} -dxPassword ${DX_PASSWORD} -dxConnectPort ${DXCONNECT_PORT} -dxConnectUsername ${DXCONNECT_USERNAME} -dxConnectPassword ${DXCONNECT_PASSWORD} -applicationFile Deployables\\EAR\\fspappinterfaceEAR.ear -applicationName fspappinterfaceEAR -dxProfileName ${dxProfileName}"
+                  command = "deploy-application -hostname ${config.hostname} -dxProtocol ${config.dxProtocol} -dxPort ${config.dxPort} -dxUsername wpsadmin -dxPassword Avn3tNPR -dxConnectPort ${DXCONNECT_PORT} -dxConnectUsername wpsadmin -dxConnectPassword Avn3tNPR -applicationFile Deployables\\EAR\\fspappinterfaceEAR.ear -applicationName fspappinterfaceEAR -dxProfileName ${dxProfileName}"
 
               // TODO : check for generic artifact path   
                   sh "./bin/dxclient ${command}"
